@@ -46,6 +46,10 @@
         </div>
 
     </section>
+    <div class="container-fluid">
+        {{-- @include('flash::message') --}}
+        @yield('content')
+    </div>
 
 </body>
 
@@ -71,7 +75,7 @@
     /* Responsive: Tampilkan Hamburger Menu di Layar Kecil */
     @media (max-width: 768px) {
 
-        ul{
+        ul {
             display: none;
             flex-direction: column;
             position: absolute;
