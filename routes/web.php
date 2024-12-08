@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('laporan-daftar', BookController::class);
+Route::resource('book', BookController::class);
