@@ -1,16 +1,20 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+use Illuminate\Auth\Middleware\Authenticate;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('book', BookController::class);
+Auth::routes();
 
+Route::middleware([Authenticate::class])->group(function () {
+    Route::resource('books', BookController::class);
+});
+
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('login');
+});

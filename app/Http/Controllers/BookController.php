@@ -2,65 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\book;
-use App\Http\Requests\StorebookRequest;
-use App\Http\Requests\UpdatebookRequest;
+use App\Models\Book;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('book_index');
+        $books = Book::all();
+        return view('books.index', compact('books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $data['user'] = \App\Models\User::orderBy('name', 'asc')->get();
+        return view('books.create', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorebookRequest $request)
+    public function store(Request $request)
     {
-        //
+        $requestData = $request->validate([
+            'user_id' => 'required|integer',
+            'title' => 'required|string|max:100',
+            'author' => 'required|string',
+            'status' => 'required|in:sudah dibaca,sedang dibaca,ingin dibaca',
+            'review' => 'nullable|string',
+            'rating' => 'nullable|integer|min:1|max:5',
+            'date_added' => 'required|date',
+            'date_finished' => 'nullable|date',
+        ]);
+
+        $book = new Book(); //membuat objek kosong di variable model
+        $book->fill($requestData); //mengisi var model dengan data yang sudah ada
+        $book->save(); //menyimpan data ke database
+        flash('Daftar Buku Berhasil di Tambahkan')->success();
+        return redirect()->route('books.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(book $book)
+    public function edit(string $id)
     {
-        //
+        $data['book'] = Book::findOrFail($id);
+        return view('books.edit', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(book $book)
+    public function update(Request $request, string $id)
     {
-        //
+        $requestData = $request->validate([
+            'title' => 'required|string|max:100',
+            'author' => 'required|string',
+            'review' => 'nullable|string',
+            'rating' => 'nullable|integer|min:1|max:5',
+            'date_finished' => 'nullable|date',
+        ]);
+        $book = Book::findOrFail($id); //membuat objek kosong di variable model
+        $book->fill($requestData); //mengisi var model dengan data yang sudah ada
+        $book->save(); //menyimpan data ke database
+        flash('Data berhasil di diupdate')->success();
+        return redirect('/books');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatebookRequest $request, book $book)
+    public function destroy(Book $book)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(book $book)
-    {
-        //
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus.');
     }
 }

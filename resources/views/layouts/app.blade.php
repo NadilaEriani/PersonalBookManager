@@ -16,6 +16,12 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .card {
+            background-color: rgb(199, 228, 230);
+        }
+    </style>
 </head>
 
 <body>
@@ -34,7 +40,30 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Data Pasien
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="/pasien">Lihat data pasien</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/pasien/create">Tambah data pasien</a>
+                                    </li>
+                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/daftar" aria-expanded="false">
+                                    Pendaftaran Pasien
+                                </a>
+                            </li>
+                            </li>
 
+                        </ul>
+
+                    @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,15 +89,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    {{-- <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
+                                    </a> --}}
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </li>
                         @endguest
@@ -78,7 +107,15 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            @if (session()->has('pesan'))
+                <div class="alert alert-info" role="alert">
+                    {{ sesion('pesan') }}
+                </div>
+            @endif
+            @include('flash::message')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
