@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +14,8 @@ Auth::routes();
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::resource('books', BookController::class);
+    Route::resource('genres', GenreController::class);
+    Route::resource('tags', TagController::class);
 });
 
 Route::get('logout', function () {

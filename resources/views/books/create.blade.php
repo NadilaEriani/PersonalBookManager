@@ -32,6 +32,17 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="genres">Genre</label>
+            <select name="genres[]" class="form-control select2" multiple style="width: 100%">
+                @foreach ($genre as $item)
+                    <option value="{{ $item->genre_id }}" @if (is_array(old('genres')) && in_array($item->genre_id, old('genres'))) selected @endif>
+                        {{ $item->name }}
+                    </option>
+                @endforeach
+            </select>
+            <small class="text-muted">Pilih satu atau lebih genre untuk buku ini.</small>
+        </div>
+        <div class="form-group">
             <label for="review">Review</label>
             <textarea name="review" class="form-control"></textarea>
         </div>

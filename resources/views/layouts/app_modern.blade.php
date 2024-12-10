@@ -43,72 +43,28 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#dataPasienSubmenu" data-bs-toggle="collapse"
-                                aria-expanded="false" aria-controls="dataPasienSubmenu">
+                            <a class="sidebar-link" href="/books" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-file-medical icon-large"></i>
+                                    <i class="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Data buku</span>
+                                <span class="hide-menu">data buku</span>
                             </a>
-                            <!-- Submenu untuk Data Pasien -->
-                            <ul class="collapse list-unstyled ms-3" id="dataPasienSubmenu">
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/books" onclick="setActive(this)">
-                                        <i class="bi bi-clipboard-data"></i> Lihat daftar buku
-                                    </a>
-                                </li>
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/books/create" onclick="setActive(this)">
-                                        <i class="bi bi-plus-circle"></i> Tambah daftar buku
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#dataPoliSubmenu" data-bs-toggle="collapse"
-                                aria-expanded="false" aria-controls="dataPoliSubmenu">
+                            <a class="sidebar-link" href="/genres" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-heart-pulse"></i>
+                                    <i class="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Data Poli</span>
+                                <span class="hide-menu">Data Genre</span>
                             </a>
-                            <!--Submenu untuk Data Poli-->
-                            <ul class="collapse list-unstyled ms-3" id="dataPoliSubmenu">
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/poli" onclick="setActive(this)">
-                                        <i class="bi bi-clipboard-data"></i> Lihat Data Poli
-                                    </a>
-                                </li>
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/poli/create" onclick="setActive(this)">
-                                        <i class="bi bi-plus-circle"></i> Tambah Data Poli
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#dataDaftarSubmenu" data-bs-toggle="collapse"
-                                aria-expanded="false" aria-controls="dataDaftarSubmenu">
+                            <a class="sidebar-link" href="/tags" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-clipboard"></i>
+                                    <i class="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Data Pendaftaran</span>
+                                <span class="hide-menu">Data Tags</span>
                             </a>
-                            <!--Submenu untuk Data Pendaftaran-->
-                            <ul class="collapse list-unstyled ms-3" id="dataDaftarSubmenu">
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/daftar" onclick="setActive(this)">
-                                        <i class="bi bi-clipboard-data"></i> Lihat Data Pendaftaran
-                                    </a>
-                                </li>
-                                <li class="sidebar-subitem">
-                                    <a class="sidebar-sublink" href="/daftar/create" onclick="setActive(this)">
-                                        <i class="bi bi-plus-circle"></i> Tambah Data Pendaftaran
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('laporan-pasien') ? 'active' : '' }}"
@@ -214,6 +170,10 @@
     {{-- Select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- CSS Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/select2.min.css" rel="stylesheet" />
+    <!-- JS Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/select2.min.js"></script>
     <script src="/Modern/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Modern/src/assets/js/sidebarmenu.js"></script>
     <script src="/Modern/src/assets/js/app.min.js"></script>
@@ -229,6 +189,16 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $(".select2").select2({
+                placeholder: "-- Pilih genre --",
+                allowClear: true,
+            });
+        });
+    </script>
+
+
 </body>
 <style>
     /* Warna dan ukuran umum untuk sidebar */

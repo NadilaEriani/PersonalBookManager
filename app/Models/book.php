@@ -17,9 +17,16 @@ class Book extends Model
         'title',
         'author',
         'status',
+        'genre_id',
         'review',
         'rating',
         'date_added',
         'date_finished',
     ];
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'book_genres', 'book_id', 'genre_id');
+    }
+
+
 }
