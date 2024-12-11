@@ -1417,10 +1417,6 @@ main.content {
     padding: 20px; /* Beri jarak dengan tepi */
     box-sizing: border-box; /* Untuk menjaga ukuran tetap rapi */
 }
-:root {
-    --navbar-height: 80px; /* Tinggi navbar */
-    --footer-height: 120px; /* Tinggi footer */
-}
 .content-wrapper {
     text-align: center; /* Pusatkan teks */
     width: 100%; /* Pastikan elemen mengisi ruang */
