@@ -1,4 +1,4 @@
-@extends('layouts.app_modern')
+@extends('layouts.book')
 
 @section('content')
     <h1>Edit Tag</h1>

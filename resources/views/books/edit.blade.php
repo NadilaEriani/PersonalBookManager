@@ -1,6 +1,7 @@
-@extends('layouts.app_modern', ['title' => 'Edit Data Buku'])
+@extends('layouts.book', ['title' => 'Edit Data Buku'])
 
 @section('content')
+<div class="container" style="margin-top: 100px">
     <div class="card">
         <div class="card-header">Edit Data Buku: <b>{{ strtoupper($book->title) }}</b></div>
         <div class="card-body">
@@ -44,4 +45,5 @@
             </form>
         </div>
     </div>
+</div>
 @endsection
