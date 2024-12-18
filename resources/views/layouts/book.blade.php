@@ -127,8 +127,8 @@
         <div class="search-popup-container">
 
             <form role="search" method="get" class="search-form" action="">
-                <input type="search" id="search-form" class="search-field" placeholder="Type and press enter"
-                    value="" name="s" />
+                <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value=""
+                    name="s" />
                 <button type="submit" class="search-submit"><svg class="search">
                         <use xlink:href="#search"></use>
                     </svg></button>
@@ -190,8 +190,7 @@
                         <ul id="navbar"
                             class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link me-4 {{ Request::is('home') ? 'active' : '' }}"
-                                    href="/home">Home</a>
+                                <a class="nav-link me-4 {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link me-4 {{ Request::is('books') ? 'active' : '' }}"
@@ -267,6 +266,7 @@
     </main>
 
     <footer id="footer" class="padding-large">
+        <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
         <div class="container">
             <div class="row">
                 <div class="footer-top-area">
@@ -393,7 +393,7 @@
     <script src="/book/js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="/book/js/script.js"></script>
 </body>

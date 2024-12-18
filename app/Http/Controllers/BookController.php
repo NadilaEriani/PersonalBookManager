@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -9,8 +9,10 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        $userId = Auth::id(); // Ambil ID user yang login
+        $books = Book::where('user_id', $userId)->get();
+
+        return view('books.index', ['books' => $books]);
     }
 
     public function create()

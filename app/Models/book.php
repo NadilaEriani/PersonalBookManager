@@ -27,6 +27,9 @@ class Book extends Model
     {
         return $this->belongsToMany(Genre::class, 'book_genres', 'book_id', 'genre_id');
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
