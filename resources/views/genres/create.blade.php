@@ -1,6 +1,7 @@
 @extends('layouts.book')
 
 @section('content')
+<div class="container" style="margin-top: 100px">
     <h1>Tambah Genre Baru</h1>
 
     @if ($errors->any())
@@ -22,4 +23,13 @@
         <button type="submit" class="btn btn-success">Simpan</button>
         <a href="{{ route('genres.index') }}" class="btn btn-secondary">Batal</a>
     </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#genres').select2({
+            placeholder: "Pilih satu atau lebih genre", // Teks petunjuk saat kosong
+            allowClear: true // Opsi untuk menghapus pilihan
+        });
+    });
+</script>
 @endsection

@@ -19,6 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -195,6 +197,14 @@
                             <li class="nav-item">
                                 <a class="nav-link me-4 {{ Request::is('books') ? 'active' : '' }}"
                                     href="/books">Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4 {{ Request::is('genre') ? 'active' : '' }}"
+                                    href="/genres">Genre</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4 {{ Request::is('user') ? 'active' : '' }}"
+                                    href="/users">User</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link me-4" href="index.html">Shop</a>
@@ -389,13 +399,99 @@
             </div>
         </div>
     </div>
-
-    <script src="/book/js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- Select2 --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="/book/js/script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "Pilih satu atau lebih genre", // Placeholder
+                allowClear: true // Opsi untuk menghapus pilihan
+            });
+        });
+    </script>
 </body>
+
+<style>
+    /* select 2 */
+    /* Pilihan Select2 Multiple */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #f8f9fa;
+        /* Warna latar */
+        border: 1px solid #ced4da;
+        /* Border */
+        border-radius: 3px;
+        /* Sudut bulat */
+        margin: 2px;
+        /* Jarak antar elemen */
+        padding: 3px 8px;
+        /* Padding keseluruhan elemen */
+        font-size: 14px;
+        /* Ukuran teks */
+        color: #495057;
+        /* Warna teks */
+        display: flex;
+        /* Gunakan flexbox */
+        align-items: center;
+        /* Pusatkan vertikal */
+        position: relative;
+        /* Kontrol posisi elemen */
+    }
+
+    /* Posisi silang (X) lebih kecil dan ke kiri */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        margin-right: 6px;
+        /* Jarak antara X dan teks */
+        margin-left: 0;
+        /* X menempel ke kiri */
+        color: red;
+        /* Warna X */
+        font-size: 14px;
+        /* Ukuran X lebih kecil */
+        cursor: pointer;
+        /* Pointer saat hover */
+    }
+
+    /* Teks di samping silang (X) bergeser ke kanan */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__text {
+        padding-left: 5px;
+        /* Jarak teks dari X */
+        margin-right: auto;
+        /* Pastikan ada jarak ke kanan */
+        overflow: visible;
+        /* Mencegah teks terpotong */
+        white-space: nowrap;
+        /* Teks tidak akan turun ke baris baru */
+    }
+
+    /* Hilangkan garis tambahan di elemen pilihan */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice::after {
+        content: none;
+        /* Hilangkan garis tambahan */
+    }
+
+    /* Perbaikan kontainer agar lebih rapi */
+    .select2-container--default .select2-selection--multiple {
+        border: 1px solid #ced4da;
+        /* Tambahkan border */
+        border-radius: 5px;
+        /* Sudut bulat */
+        padding: 4px;
+        /* Padding luar */
+        min-height: 38px;
+        /* Tinggi minimum */
+        display: flex;
+        flex-wrap: wrap;
+        /* Pastikan elemen tersusun rapi */
+    }
+</style>
 
 </html>

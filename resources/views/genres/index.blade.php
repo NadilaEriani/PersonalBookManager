@@ -1,6 +1,7 @@
 @extends('layouts.book')
 
 @section('content')
+<div class="container" style="margin-top: 100px">
     <h1>Daftar Genre</h1>
     <a href="{{ route('genres.create') }}" class="btn btn-primary mb-3">Tambah Genre</a>
 
@@ -25,7 +26,6 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $genre->name }}</td>
                         <td>
-                            <a href="{{ route('genres.edit', $genre->genre_id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('genres.destroy', $genre->genre_id) }}" method="POST"
                                 style="display:inline;">
                                 @csrf
@@ -38,5 +38,7 @@
                 @endforeach
             </tbody>
         </table>
+
     @endif
+</div>
 @endsection

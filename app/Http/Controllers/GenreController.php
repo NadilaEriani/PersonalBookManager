@@ -31,18 +31,18 @@ class GenreController extends Controller
 
     public function edit(Genre $genre)
     {
-        return view('genres.edit', compact('genre'));
+        // return view('genres.edit', compact('genre'));
     }
 
     public function update(Request $request, Genre $genre)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        // ]);
 
-        $genre->update($request->only('name'));
+        // $genre->update($request->only('name'));
 
-        return redirect()->route('genres.index')->with('success', 'Genre berhasil diperbarui.');
+        // return redirect()->route('genres.index')->with('success', 'Genre berhasil diperbarui.');
     }
 
     public function destroy(Genre $genre)

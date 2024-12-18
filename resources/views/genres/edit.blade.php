@@ -1,6 +1,7 @@
 @extends('layouts.book')
 
 @section('content')
+<div class="container" style="margin-top: 100px">
     <h1>Edit Genre</h1>
 
     @if ($errors->any())
@@ -23,4 +24,5 @@
         <button type="submit" class="btn btn-success">Perbarui</button>
         <a href="{{ route('genres.index') }}" class="btn btn-secondary">Batal</a>
     </form>
+</div>
 @endsection

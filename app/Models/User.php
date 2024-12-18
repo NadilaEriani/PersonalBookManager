@@ -48,4 +48,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Book::class, 'user_id');
     }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
 }
