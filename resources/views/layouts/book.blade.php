@@ -195,16 +195,23 @@
                                 <a class="nav-link me-4 {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-4 {{ Request::is('books') ? 'active' : '' }}"
-                                    href="/books">Books</a>
+                                @if (Auth::check() && Auth::user()->role == 'user')
+                                    <a class="nav-link me-4 {{ Request::is('books') ? 'active' : '' }}"
+                                        href="/books">Books</a>
+                                @endif
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-4 {{ Request::is('genre') ? 'active' : '' }}"
-                                    href="/genres">Genre</a>
+                                @if (Auth::check() && Auth::user()->role == 'admin')
+                                    <a class="nav-link me-4 {{ Request::is('genres') ? 'active' : '' }}"
+                                        href="/genres">Genre</a>
+                                @endif
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link me-4 {{ Request::is('user') ? 'active' : '' }}"
-                                    href="/users">User</a>
+                                @if (Auth::check() && Auth::user()->role == 'admin')
+                                    <a class="nav-link me-4 {{ Request::is('users') ? 'active' : '' }}"
+                                        href="/users">User</a>
+                                @endif
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link me-4" href="index.html">Shop</a>
