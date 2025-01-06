@@ -1428,3 +1428,219 @@ main.content {
     width: 100%;
     z-index: 1000; /* Pastikan navbar berada di atas elemen lain */
 }
+/* Modal logout */
+.modal-content {
+    border-radius: 10px; /* Membuat modal lebih menarik */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+}
+
+.modal-body p {
+    font-size: 16px; /* Ukuran teks */
+    margin-bottom: 20px;
+}
+
+.dropdown-menu {
+    border-radius: 8px; /* Membuat sudut menu lebih bulat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan untuk menu */
+}
+
+.dropdown-menu a {
+    font-size: 14px;
+    color: #333;
+    padding: 10px 15px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f8f9fa; /* Warna latar saat hover */
+    color: #000;
+}
+.user {
+    fill: #ff6b6b; /* Warna merah */
+    width: 24px; /* Ukuran ikon */
+    height: 24px;
+    transition: fill 0.3s ease; /* Animasi untuk perubahan warna */
+}
+
+.user:hover {
+    fill: #e63946; /* Warna merah lebih gelap saat hover */
+}
+
+/* css untuk logo */
+/* Atur ukuran logo */
+.logo-text {
+    font-family: "Nunito", sans-serif; /* Sesuaikan dengan font logo */
+    font-size: 24px; /* Ukuran font */
+    font-weight: 700; /* Tebal font */
+    text-transform: uppercase; /* Huruf besar semua */
+    text-align: center;
+    background: linear-gradient(90deg, black, red); /* Gradasi hitam ke merah */
+    -webkit-background-clip: text; /* Klip warna ke teks */
+    -webkit-text-fill-color: transparent; /* Teks transparan, hanya warna gradien yang muncul */
+}
+
+/* Atur padding navbar agar logo lebih proporsional */
+.navbar-brand {
+    padding: 10px 0; /* Sesuaikan padding atas dan bawah */
+    display: flex;
+    justify-content: center; /* Pusatkan elemen */
+    align-items: center;
+}
+
+/* navbar */
+/* Perbaiki lebar navbar */
+#header-nav {
+    padding: 0.5rem 1rem; /* Kurangi padding navbar */
+    background-color: #ffffff; /* Warna latar navbar */
+    border-bottom: 1px solid #e3e3e3; /* Tambahkan garis bawah untuk pemisahan */
+}
+
+#header-nav .container {
+    max-width: 1200px; /* Atur lebar maksimum navbar */
+    margin: auto; /* Pusatkan kontainer */
+}
+
+.navbar-nav .nav-item a.nav-link {
+    font-size: 16px; /* Ukuran font lebih kecil */
+    font-weight: 500; /* Sesuaikan ketebalan font */
+    padding: 0.5rem 1rem; /* Kurangi padding */
+}
+
+.navbar-brand img.logo {
+    width: 150px; /* Sesuaikan ukuran logo */
+    height: auto; /* Pastikan proporsi tetap */
+    max-height: 70px; /* Batasi tinggi logo */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 991px) {
+    #header-nav .offcanvas {
+        max-width: 280px; /* Sesuaikan lebar offcanvas */
+    }
+
+    .navbar-nav .nav-item a.nav-link {
+        padding: 0.3rem 0.8rem; /* Kurangi padding link di layar kecil */
+        font-size: 14px; /* Ukuran font lebih kecil */
+    }
+
+    .navbar-brand img.logo {
+        width: 120px; /* Kurangi ukuran logo untuk layar kecil */
+    }
+}
+#header-nav .container {
+    display: flex;
+    justify-content: center; /* Pusatkan elemen secara horizontal */
+    align-items: center; /* Pusatkan elemen secara vertikal */
+}
+
+#header-nav .navbar-brand {
+    margin-right: auto; /* Logo tetap di tengah */
+}
+
+#header-nav .navbar-nav {
+    margin: 0 auto; /* Pusatkan item navigasi */
+    display: flex;
+    justify-content: center; /* Pusatkan item */
+    align-items: center;
+}
+
+.user-items {
+    margin-left: auto; /* Item user tetap di kanan */
+    display: flex;
+    align-items: center;
+}
+/* footer */
+
+/* Style untuk footer */
+#footer {
+    background-color: #f8f9fa; /* Warna latar belakang */
+    padding: 40px 0; /* Jarak atas dan bawah */
+    text-align: center; /* Pusatkan teks */
+}
+
+#footer .footer-menu img {
+    max-width: 100px; /* Ukuran logo */
+    margin-bottom: 15px; /* Jarak bawah dengan teks */
+}
+
+#footer .footer-menu p {
+    font-size: 14px; /* Ukuran teks */
+    color: #6c757d; /* Warna teks */
+    margin-bottom: 20px; /* Jarak bawah */
+    line-height: 1.6; /* Jarak antar baris */
+}
+
+#footer .social-links ul {
+    justify-content: center; /* Pusatkan ikon sosial */
+    margin: 0 auto; /* Tengah-tengah */
+    padding: 0;
+}
+
+#footer .social-links ul li {
+    margin: 0 10px; /* Jarak antar ikon */
+}
+
+#footer .social-links ul li a svg {
+    width: 24px; /* Ukuran ikon */
+    height: 24px;
+    fill: #6c757d; /* Warna ikon */
+    transition: fill 0.3s ease; /* Efek animasi saat hover */
+}
+
+#footer .social-links ul li a:hover svg {
+    fill: #f86d72; /* Warna ikon saat hover */
+}
+
+#footer .footer-menu h5 {
+    font-size: 16px; /* Ukuran judul */
+    font-weight: bold;
+    margin-bottom: 15px; /* Jarak bawah */
+    color: #343a40; /* Warna judul */
+}
+
+#footer .footer-menu ul {
+    list-style: none; /* Hilangkan bullet */
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Rata kiri */
+}
+
+#footer .footer-menu ul li {
+    margin-bottom: 10px; /* Jarak antar item */
+}
+
+#footer .footer-menu ul li a {
+    color: #6c757d; /* Warna teks */
+    text-decoration: none; /* Hilangkan garis bawah */
+    transition: color 0.3s ease; /* Efek saat hover */
+}
+
+#footer .footer-menu ul li a:hover {
+    color: #f86d72; /* Warna saat hover */
+}
+
+/* Untuk bagian kontak */
+#footer .contact-item p {
+    font-size: 14px;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+#footer .contact-item a {
+    color: #f86d72;
+    text-decoration: none;
+}
+
+#footer .contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #footer .footer-top-area {
+        text-align: center;
+    }
+
+    #footer .footer-menu {
+        margin-bottom: 30px; /* Jarak antar kolom di layar kecil */
+    }
+}

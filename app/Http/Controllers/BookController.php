@@ -69,6 +69,30 @@ class BookController extends Controller
         flash('Data berhasil di diupdate')->success();
         return redirect('/books');
     }
+    public function updateStatus(Request $request, Book $book)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:ingin dibaca,sedang dibaca,sudah dibaca',
+        ]);
+
+        $book->status = $validated['status'];
+        $book->save();
+
+        return redirect()->route('books.index')->with('success', 'Status buku berhasil diperbarui.');
+    }
+    public function updateDate(Request $request, Book $book)
+    {
+        $request->validate([
+            'year' => 'required|integer|min:2000|max:' . now()->year,
+            'month' => 'required|integer|min:1|max:12',
+            'day' => 'required|integer|min:1|max:31',
+        ]);
+
+        $book->date_finished = \Carbon\Carbon::create($request->year, $request->month, $request->day);
+        $book->save();
+
+        return redirect()->route('books.index')->with('success', 'Tanggal selesai membaca berhasil diperbarui.');
+    }
 
     public function destroy(Book $book)
     {

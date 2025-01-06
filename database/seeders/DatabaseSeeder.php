@@ -20,9 +20,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         #arahkan dulu dia dimana
-        \App\Models\pasien::factory(100)->create();
-        \App\Models\Mahasiswa::factory(100)->create();
-        \App\Models\Poli::factory(5)->create();
-        \App\Models\Daftar::factory(100)->create();
+
     }
 }

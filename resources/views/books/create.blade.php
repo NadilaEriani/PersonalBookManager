@@ -32,33 +32,30 @@
             </select>
             <small class="text-muted">Pilih satu atau lebih genre untuk buku ini.</small>
         </div>
-        <!-- <div class="form-group">
-            <label for="genres">Genre</label>
-            <select name="genres[]" class="form-control select2" multiple style="width: 100%">
-                @foreach ($genre as $item)
-                    <option value="{{ $item->genre_id }}" @if (is_array(old('genres')) && in_array($item->genre_id, old('genres'))) selected @endif>
-                        {{ $item->name }}
-                    </option>
-                @endforeach
-            </select>
-            <small class="text-muted">Pilih satu atau lebih genre untuk buku ini.</small>
-        </div> -->
         <div class="form-group">
             <label for="review">Review</label>
             <textarea name="review" class="form-control"></textarea>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="rating">Rating</label>
             <input type="number" name="rating" class="form-control" min="1" max="5">
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="date_added">Tanggal Ditambahkan</label>
-            <input type="datetime-local" name="date_added" class="form-control" required>
+            <input type="date" id="date_added" name="date_added" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="date_finished">Tanggal Selesai Dibaca</label>
-            <input type="datetime-local" name="date_finished" class="form-control">
-        </div>
+
+        <script>
+            // Mendapatkan elemen input
+            const dateInput = document.getElementById('date_added');
+
+            // Mendapatkan tanggal hari ini
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0]; // Mengambil format 'yyyy-MM-dd'
+
+            // Mengatur nilai default
+            dateInput.value = formattedDate;
+        </script>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>

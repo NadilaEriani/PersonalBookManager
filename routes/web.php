@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware\Authenticate;
 // Default Routes
+// Redirect root URL to login
+Route::get('/', function () {
+    return redirect('/login');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::get('logout', function () {
@@ -17,13 +22,13 @@ Route::get('logout', function () {
     return redirect('login');
 });
 
-// Admin Routes
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('users', UserController::class);
-    Route::resource('genres', GenreController::class);
-});
-
 // User Routes
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::resource('books', BookController::class);
+    Route::patch('/books/{book}/update-status', [BookController::class, 'updateStatus'])->name('books.updateStatus');
+    Route::patch('/books/{book}/update-date', [BookController::class, 'updateDate'])->name('books.updateDate');
+
+    // User-specific routes
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
+    Route::resource('users', UserController::class); // Pastikan resource di bawah
 });

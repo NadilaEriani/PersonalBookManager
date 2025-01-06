@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Bookly - Bookstore eCommerce Website Template</title>
+    <title>Personal Book Manager</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 
 </head>
 
@@ -124,54 +127,16 @@
         </symbol>
     </svg>
 
-
-    {{-- <div class="search-popup">
-        <div class="search-popup-container">
-
-            <form role="search" method="get" class="search-form" action="">
-                <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value=""
-                    name="s" />
-                <button type="submit" class="search-submit"><svg class="search">
-                        <use xlink:href="#search"></use>
-                    </svg></button>
-            </form>
-
-            <h5 class="cat-list-title">Browse Categories</h5>
-
-            <ul class="cat-list">
-                <li class="cat-list-item">
-                    <a href="#" title="Romance">Romance</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Thriller">Thriller</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Sci-fi">Sci-fi</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Cooking">Cooking</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Health">Health</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Lifestyle">Lifestyle</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Fiction">Fiction</a>
-                </li>
-            </ul>
-
-        </div>
-    </div> --}}
-
     <header id="header" class="site-header">
 
         <nav id="header-nav" class="navbar navbar-expand-lg py-3">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="/book/images/main-logo.png" class="logo">
+                <!-- Logo -->
+                <a class="navbar-brand" href="#">
+                    <span class="logo-text">PERSONAL BOOK MANAGER</span>
                 </a>
+
+                <!-- Navbar Toggle for Mobile -->
                 <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -179,95 +144,52 @@
                         <use xlink:href="#navbar-icon"></use>
                     </svg>
                 </button>
+
+                <!-- Navbar Links -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar"
                     aria-labelledby="bdNavbarOffcanvasLabel">
                     <div class="offcanvas-header px-4 pb-0">
                         <a class="navbar-brand" href="index.html">
-                            <img src="/book/images/main-logo.png" class="logo">
+                            <img src="/book/images/main-logo.png" class="logo" alt="Bookly Logo">
                         </a>
                         <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
                             aria-label="Close" data-bs-target="#bdNavbar"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <ul id="navbar"
-                            class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
+                        <!-- Centered Navbar Items -->
+                        <ul id="navbar" class="navbar-nav text-uppercase">
                             <li class="nav-item">
-                                <a class="nav-link me-4 {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
+                                <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                @if (Auth::check() && Auth::user()->role == 'user')
-                                    <a class="nav-link me-4 {{ Request::is('books') ? 'active' : '' }}"
-                                        href="/books">Books</a>
-                                @endif
+                                <a class="nav-link {{ Request::is('books') ? 'active' : '' }}" href="/books">Books</a>
                             </li>
                             <li class="nav-item">
-                                @if (Auth::check() && Auth::user()->role == 'admin')
-                                    <a class="nav-link me-4 {{ Request::is('genres') ? 'active' : '' }}"
-                                        href="/genres">Genre</a>
-                                @endif
-                            </li>
-
-                            <li class="nav-item">
-                                @if (Auth::check() && Auth::user()->role == 'admin')
-                                    <a class="nav-link me-4 {{ Request::is('users') ? 'active' : '' }}"
-                                        href="/users">User</a>
-                                @endif
+                                <a class="nav-link {{ Request::is('shop') ? 'active' : '' }}" href="/shop">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="index.html">Shop</a>
+                                <a class="nav-link {{ Request::is('blogs') ? 'active' : '' }}" href="/blogs">Blogs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="index.html">Blogs</a>
-                            </li>
-                            {{-- <li class="nav-item dropdown">
-                                <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false">Pages</a>
-                                <ul class="dropdown-menu animate slide border">
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Shop</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Single Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Single Post</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html" class="dropdown-item fw-light">Contact</a>
-                                    </li>
-                                </ul>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="index.html">Contact</a>
+                                <a class="nav-link {{ Request::is('contact') ? 'active' : '' }}"
+                                    href="/contact">Contact</a>
                             </li>
                         </ul>
-                        <div class="user-items d-flex">
+                        <!-- User Icon -->
+                        <div class="user-items">
                             <ul class="d-flex justify-content-end list-unstyled mb-0">
-                                <li class="search-item pe-3">
-                                    <a href="#" class="search-button">
-                                        <svg class="search">
-                                            <use xlink:href="#search"></use>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="pe-3">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle text-decoration-none" id="userDropdown"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg class="user">
                                             <use xlink:href="#user"></use>
                                         </svg>
                                     </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#logoutModal">Logout</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -275,15 +197,32 @@
                 </div>
             </div>
         </nav>
+
         {{-- nav end --}}
     </header>
+    <!-- Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Keluar Akun</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Apakah Anda yakin ingin logout?</p>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <main class="content">
         @yield('content')
     </main>
 
     <footer id="footer" class="padding-large">
-        <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
         <div class="container">
             <div class="row">
                 <div class="footer-top-area">
@@ -340,13 +279,13 @@
                                 <h5 class="widget-title pb-2">Quick Links</h5>
                                 <ul class="menu-list list-unstyled text-capitalize">
                                     <li class="menu-item mb-1">
-                                        <a href="#">Home</a>
+                                        <a href="/home">Home</a>
                                     </li>
                                     <li class="menu-item mb-1">
-                                        <a href="#">About</a>
+                                        <a href="/books">Books</a>
                                     </li>
                                     <li class="menu-item mb-1">
-                                        <a href="#">Shop</a>
+                                        <a href="#">Books</a>
                                     </li>
                                     <li class="menu-item mb-1">
                                         <a href="#">Blogs</a>
@@ -357,28 +296,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 pb-3">
-                            <div class="footer-menu text-capitalize">
-                                <h5 class="widget-title pb-2">Help & Info Help</h5>
-                                <ul class="menu-list list-unstyled">
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Track Your Order</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Returns Policies</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Shipping + Delivery</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Contact Us</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Faqs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                         <div class="col-lg-3 col-sm-6 pb-3">
                             <div class="footer-menu contact-item">
                                 <h5 class="widget-title text-capitalize pb-2">Contact Us</h5>
@@ -406,6 +324,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{-- Select2 --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
