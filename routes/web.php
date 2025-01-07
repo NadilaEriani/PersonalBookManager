@@ -15,7 +15,7 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 Route::get('logout', function () {
     Auth::logout();
@@ -27,8 +27,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::resource('books', BookController::class);
     Route::patch('/books/{book}/update-status', [BookController::class, 'updateStatus'])->name('books.updateStatus');
     Route::patch('/books/{book}/update-date', [BookController::class, 'updateDate'])->name('books.updateDate');
+    Route::get('/books/view', [BookController::class, 'view'])->name('books.view');
+    Route::get('/books/genre/{genre}', [BookController::class, 'filterByGenre'])->name('books.filterByGenre');
 
     // User-specific routes
     Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
     Route::resource('users', UserController::class); // Pastikan resource di bawah
+    Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
+
 });

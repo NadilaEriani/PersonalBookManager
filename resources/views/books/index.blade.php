@@ -17,7 +17,7 @@
                 <th>Penulis</th>
                 <th>Status</th>
                 <th>genre</th>
-                <th>Tentang Buku</th>
+                <th>Review Buku</th>
                 <th>Tanggal Ditambahkan</th>
                 <th>Selesai Membaca</th>
                 <th>Aksi</th>

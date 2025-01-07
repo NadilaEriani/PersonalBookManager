@@ -1,13 +1,30 @@
 @extends('layouts.bg')
-
+<style>
+    .custom-error-box {
+        border: 1px solid #f8d7da;
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        text-align: left;
+    }
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Masuk') }}</div>
 
                 <div class="card-body">
+                    @if (session('error'))
+                        <div class="alert alert-danger custom-error-box">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -16,7 +33,13 @@
                                 {{ __('Email Address') }}
                             </label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" required>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email', '') }}" required autofocus autocomplete="off">
+                                @error('email')
+                                    <span class="invalid-feedback custom-error-box" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -25,7 +48,14 @@
                                 {{ __('Password') }}
                             </label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    value="{{ old('password', '') }}" required autocomplete="off">
+                                @error('password')
+                                    <span class="invalid-feedback custom-error-box" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -44,7 +74,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <div class="button-container">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        {{ __('Masuk') }}
                                     </button>
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">

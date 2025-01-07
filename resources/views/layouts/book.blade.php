@@ -162,17 +162,11 @@
                                 <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('books') ? 'active' : '' }}" href="/books">Books</a>
+                                <a class="nav-link {{ Request::is('books') ? 'active' : '' }}" href="/books">MyBooks</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('shop') ? 'active' : '' }}" href="/shop">Shop</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('blogs') ? 'active' : '' }}" href="/blogs">Blogs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('contact') ? 'active' : '' }}"
-                                    href="/contact">Contact</a>
+                                <a class="nav-link {{ Request::is('shop') ? 'active' : '' }}"
+                                    href="/books/view">ListBook</a>
                             </li>
                         </ul>
                         <!-- User Icon -->
@@ -282,16 +276,10 @@
                                         <a href="/home">Home</a>
                                     </li>
                                     <li class="menu-item mb-1">
-                                        <a href="/books">Books</a>
+                                        <a href="/books">MyBooks</a>
                                     </li>
                                     <li class="menu-item mb-1">
-                                        <a href="#">Books</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Blogs</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="#">Contact</a>
+                                        <a href="/books/view">List Book</a>
                                     </li>
                                 </ul>
                             </div>

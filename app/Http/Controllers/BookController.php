@@ -93,6 +93,33 @@ class BookController extends Controller
 
         return redirect()->route('books.index')->with('success', 'Tanggal selesai membaca berhasil diperbarui.');
     }
+    public function show(Request $request)
+    {
+        $query = Book::query();
+
+        // Logika pencarian
+        if ($search = $request->input('search')) {
+            $query->where('title', 'like', "%{$search}%")
+                ->orWhere('author', 'like', "%{$search}%")
+                ->orWhereHas('genres', function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                });
+        }
+
+        // Ambil data buku dengan relasi genre
+        $books = $query->with('genres')->paginate(10);
+
+        return view('books.view', compact('books'));
+    }
+
+    public function filterByGenre($genre)
+    {
+        $books = Book::whereHas('genres', function ($query) use ($genre) {
+            $query->where('name', $genre);
+        })->with('genres')->paginate(10);
+
+        return view('books.view', compact('books'));
+    }
 
     public function destroy(Book $book)
     {
