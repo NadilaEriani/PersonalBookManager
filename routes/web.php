@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::patch('/books/{book}/update-date', [BookController::class, 'updateDate'])->name('books.updateDate');
     Route::get('/books/view', [BookController::class, 'view'])->name('books.view');
     Route::get('/books/genre/{genre}', [BookController::class, 'filterByGenre'])->name('books.filterByGenre');
+    Route::patch('/books/{book}/delete-date', [BookController::class, 'deleteDate'])->name('books.deleteDate');
 
     // User-specific routes
     Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');

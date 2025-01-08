@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="genres">Genre</label>
             <select name="genres[]" id="genres" class="form-control select2" multiple="multiple" style="width: 100%;">
-                @foreach ($genre as $item)
+                @foreach ($genres as $item)
                     <option value="{{ $item->genre_id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
@@ -36,10 +36,6 @@
             <label for="review">Review</label>
             <textarea name="review" class="form-control"></textarea>
         </div>
-        <!-- <div class="form-group">
-            <label for="rating">Rating</label>
-            <input type="number" name="rating" class="form-control" min="1" max="5">
-        </div> -->
         <div class="form-group">
             <label for="date_added">Tanggal Ditambahkan</label>
             <input type="date" id="date_added" name="date_added" class="form-control" required>

@@ -25,6 +25,21 @@
                     <span class="text-danger">{{ $errors->first('author') }}</span>
                 </div>
 
+              <!-- Genre -->
+             <!-- Genre -->
+<div class="form-group mt-3">
+    <label for="genres">Genre</label>
+    <select name="genres[]" id="genres" class="form-control select2" multiple="multiple" style="width: 100%;">
+        @foreach ($genres as $item)
+            <option value="{{ $item->genre_id }}" 
+                {{ $book->genres->pluck('genre_id')->contains($item->genre_id) ? 'selected' : '' }}>
+                {{ $item->name }}
+            </option>
+        @endforeach
+    </select>
+    <small class="text-muted">Pilih satu atau lebih genre untuk buku ini.</small>
+</div>
+
                 <!-- Review -->
                 <div class="form-group mt-3">
                     <label for="review">Review</label>
@@ -40,3 +55,9 @@
     </div>
 </div>
 @endsection
+
+<script>
+    $(document).ready(function () {
+        $('#genres').select2();
+    });
+</script>

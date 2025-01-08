@@ -107,7 +107,7 @@
                 <!-- Kategori Motivation -->
                 <div class="col-md-4">
                     <div class="card text-center mb-4 border-0 rounded-3">
-                        <a href="{{ route('books.filterByGenre', 'Motivation') }}">
+                        <a href="{{ route('books.filterByGenre', 'Motivasi') }}">
                             <img src="/book/images/category3.jpg" class="img-fluid rounded-3" alt="Motivation">
                             <h6 class="position-absolute bottom-0 bg-primary m-4 py-2 px-3 rounded-3 text-white">
                                 Motivation</h6>

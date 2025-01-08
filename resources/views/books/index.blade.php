@@ -8,7 +8,6 @@
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <table class="table">
         <thead>
             <tr>
@@ -62,7 +61,8 @@
                         </span>
                         <a href="javascript:void(0)" onclick="editDate('{{ $book->book_id }}')">[edit]</a>
                         <div id="edit-date-{{ $book->book_id }}" style="display:none;">
-                            <form action="{{ route('books.updateDate', $book->book_id) }}" method="POST">
+                            <form action="{{ route('books.updateDate', $book->book_id) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('PATCH')
                                 <select name="year">
@@ -81,10 +81,18 @@
                                     @endfor
                                 </select>
                                 <button type="submit">Save</button>
-                                <a href="javascript:void(0)" onclick="cancelEdit('{{ $book->book_id }}')">cancel</a>
                             </form>
+                            <form action="{{ route('books.deleteDate', $book->book_id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit"
+                                    onclick="return confirm('Yakin ingin menghapus tanggal selesai membaca?')">Hapus</button>
+                            </form>
+                            <a href="javascript:void(0)" onclick="cancelEdit('{{ $book->book_id }}')">cancel</a>
                         </div>
                     </td>
+
 
                     <td>
                         <a href="{{ route('books.edit', $book->book_id) }}" class="btn btn-warning">Edit</a>

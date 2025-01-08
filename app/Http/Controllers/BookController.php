@@ -18,7 +18,7 @@ class BookController extends Controller
     public function create()
     {
         $data['user'] = \App\Models\User::orderBy('name', 'asc')->get();
-        $data['genre'] = \App\Models\Genre::orderBy('name', 'asc')->get();
+        $data['genres'] = \App\Models\Genre::orderBy('name', 'asc')->get();
         return view('books.create', $data);
     }
 
@@ -50,7 +50,8 @@ class BookController extends Controller
 
     public function edit(string $id)
     {
-        $data['book'] = Book::findOrFail($id);
+        $data['book'] = Book::with('genres')->findOrFail($id); // Ambil data buku beserta genre yang terkait
+        $data['genres'] = \App\Models\Genre::all(); // Ambil semua genre untuk opsi tambahan
         return view('books.edit', $data);
     }
 
@@ -60,26 +61,43 @@ class BookController extends Controller
             'title' => 'required|string|max:100',
             'author' => 'required|string',
             'review' => 'nullable|string',
-            'rating' => 'nullable|integer|min:1|max:5',
-            'date_finished' => 'nullable|date',
+            'genres' => 'nullable|array', // Genres bisa kosong
+            'genres.*' => 'exists:genres,genre_id', // Validasi setiap genre
         ]);
-        $book = Book::findOrFail($id); //membuat objek kosong di variable model
-        $book->fill($requestData); //mengisi var model dengan data yang sudah ada
-        $book->save(); //menyimpan data ke database
-        flash('Data berhasil di diupdate')->success();
-        return redirect('/books');
+
+        // Cari buku berdasarkan ID
+        $book = Book::findOrFail($id);
+
+        // Update hanya field yang diubah
+        $book->title = $requestData['title'];
+        $book->author = $requestData['author'];
+        $book->review = $requestData['review'];
+        $book->user_id = $book->user_id; // Pastikan user_id tidak berubah
+        $book->save();
+
+        // Update genre melalui relasi pivot
+        $book->genres()->sync($requestData['genres'] ?? []); // Jika genre kosong, relasi juga kosong
+
+        flash('Data berhasil diperbarui')->success();
+        return redirect()->route('books.index');
     }
+
     public function updateStatus(Request $request, Book $book)
     {
+        // Validasi input status
         $validated = $request->validate([
             'status' => 'required|in:ingin dibaca,sedang dibaca,sudah dibaca',
         ]);
 
+        // Perbarui status buku
         $book->status = $validated['status'];
         $book->save();
 
+        // Redirect ke halaman daftar buku dengan pesan sukses
         return redirect()->route('books.index')->with('success', 'Status buku berhasil diperbarui.');
     }
+
+
     public function updateDate(Request $request, Book $book)
     {
         $request->validate([
@@ -93,6 +111,15 @@ class BookController extends Controller
 
         return redirect()->route('books.index')->with('success', 'Tanggal selesai membaca berhasil diperbarui.');
     }
+    public function deleteDate(Request $request, Book $book)
+    {
+        // Hapus tanggal selesai membaca
+        $book->date_finished = null;
+        $book->save();
+
+        return redirect()->route('books.index')->with('success', 'Tanggal selesai membaca berhasil dihapus.');
+    }
+
     public function show(Request $request)
     {
         $query = Book::query();
