@@ -165,7 +165,7 @@
                                 <a class="nav-link {{ Request::is('books') ? 'active' : '' }}" href="/books">MyBooks</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('shop') ? 'active' : '' }}"
+                                <a class="nav-link {{ Request::is('books/view') ? 'active' : '' }}"
                                     href="/books/view">ListBook</a>
                             </li>
                         </ul>
