@@ -221,78 +221,59 @@
             <div class="row">
                 <div class="footer-top-area">
                     <div class="row d-flex flex-wrap justify-content-between">
-                        <div class="col-lg-3 col-sm-6 pb-3">
-                            <div class="footer-menu">
-                                <img src="/book/images/main-logo.png" alt="logo" class="img-fluid mb-2">
-                                <p>Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa
-                                    volutpat aenean odio
-                                    erat nullam fringilla.</p>
-                                <div class="social-links">
-                                    <ul class="d-flex list-unstyled">
-                                        <li>
-                                            <a href="#">
-                                                <svg class="facebook">
-                                                    <use xlink:href="#facebook" />
-                                                </svg>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <svg class="instagram">
-                                                    <use xlink:href="#instagram" />
-                                                </svg>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <svg class="twitter">
-                                                    <use xlink:href="#twitter" />
-                                                </svg>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <svg class="linkedin">
-                                                    <use xlink:href="#linkedin" />
-                                                </svg>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <svg class="youtube">
-                                                    <use xlink:href="#youtube" />
-                                                </svg>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-6 pb-3">
-                            <div class="footer-menu text-capitalize">
-                                <h5 class="widget-title pb-2">Quick Links</h5>
-                                <ul class="menu-list list-unstyled text-capitalize">
-                                    <li class="menu-item mb-1">
-                                        <a href="/home">Home</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="/books">MyBooks</a>
-                                    </li>
-                                    <li class="menu-item mb-1">
-                                        <a href="/books/view">List Book</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <!-- Logo dan Deskripsi -->
+                        <div class="col-lg-4 col-sm-12 text-center pb-3">
+                            <a href="/">
+                                <span class="logo-text" style="font-size: 1.5rem; font-weight: bold;">PERSONAL BOOK
+                                    MANAGER</span>
+                            </a>
+                            <p class="mt-2">Mengelola buku Anda dengan lebih teratur dan mudah. Solusi terbaik untuk
+                                perpustakaan pribadi Anda!</p>
                         </div>
 
-                        <div class="col-lg-3 col-sm-6 pb-3">
-                            <div class="footer-menu contact-item">
-                                <h5 class="widget-title text-capitalize pb-2">Contact Us</h5>
-                                <p>Do you have any queries or suggestions? <a href="mailto:"
-                                        class="text-decoration-underline">yourinfo@gmail.com</a></p>
-                                <p>If you need support? Just give us a call. <a href="#"
-                                        class="text-decoration-underline">+55 111 222
-                                        333 44</a></p>
+                        <!-- Contact Us -->
+                        <div class="col-lg-4 col-sm-6 pb-3 text-center">
+                            <h5 class="widget-title pb-2">Contact Us</h5>
+                            <p>Email: <a href="mailto:nadila23ti@mahasiswa.pcr.ac.id"
+                                    class="text-decoration-underline">nadila23ti@mahasiswa.pcr.ac.id</a></p>
+                            <p>Telepon: <a href="tel:+6285271845558" class="text-decoration-underline">0852 7184
+                                    5558</a></p>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="col-lg-4 col-sm-6 pb-3 text-center">
+                            <h5 class="widget-title pb-2">Follow Us</h5>
+                            <div class="social-links">
+                                <ul class="d-flex justify-content-center list-unstyled gap-3">
+                                    <li>
+                                        <a href="#" title="Facebook">
+                                            <svg class="facebook" style="width: 24px; height: 24px;">
+                                                <use xlink:href="#facebook" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="Instagram">
+                                            <svg class="instagram" style="width: 24px; height: 24px;">
+                                                <use xlink:href="#instagram" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="Twitter">
+                                            <svg class="twitter" style="width: 24px; height: 24px;">
+                                                <use xlink:href="#twitter" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="LinkedIn">
+                                            <svg class="linkedin" style="width: 24px; height: 24px;">
+                                                <use xlink:href="#linkedin" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -301,17 +282,13 @@
         </div>
     </footer>
     <hr>
-    <div id="footer-bottom" class="mb-1">
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-between">
-                <div class="copyright">
-                    <p>© Copyright 2024 Nadila Eriani <a href="https://templatesjungle.com/" target="_blank">Personal
-                            Book Manager</a>
-                    </p>
-                </div>
-            </div>
+    <div id="footer-bottom" class="py-3" style="background-color: #f8f9fa;">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Nadila Eriani Afsri, <span style="font-weight: bold;">Personal Book
+                    Manager</span>. All rights reserved.</p>
         </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{-- Select2 --}}

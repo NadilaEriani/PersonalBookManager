@@ -13,6 +13,7 @@
             <tr>
                 <th>No</th>
                 <th>Judul</th>
+                <th>Foto</th>
                 <th>Penulis</th>
                 <th>Status</th>
                 <th>genre</th>
@@ -27,6 +28,13 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $book->title }}</td>
+                    <td>
+                        @if ($book->cover_image)
+                            <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover" width="50">
+                        @else
+                            <span>Tidak ada foto</span>
+                        @endif
+                    </td>
                     <td>{{ $book->author }}</td>
                     <td>
                         <form action="{{ route('books.updateStatus', $book->book_id) }}" method="POST"

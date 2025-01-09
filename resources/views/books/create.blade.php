@@ -3,7 +3,8 @@
 @section('content')
 <div class="container" style="margin-top: 100px">
     <h1>Tambah Buku</h1>
-    <form action="{{ route('books.store') }}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+
         @csrf
         <!-- User ID (Hidden Input) -->
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -11,6 +12,12 @@
             <label for="title">Judul Buku</label>
             <input type="text" name="title" class="form-control" required>
         </div>
+        <div class="form-group">
+            <label for="cover_image">Foto Buku</label>
+            <input type="file" name="cover_image" class="form-control" accept="image/*">
+            <small class="text-muted">Unggah foto buku (format: jpg, jpeg, png, max: 2MB).</small>
+        </div>
+
         <div class="form-group">
             <label for="author">Penulis</label>
             <input type="text" name="author" class="form-control" required>

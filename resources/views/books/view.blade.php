@@ -21,13 +21,12 @@
         <table class="table table-striped table-hover align-middle shadow-sm">
             <thead class="bg-primary text-white">
                 <tr>
-                <tr>
                     <th class="fw-bold">No</th>
                     <th class="fw-bold">Judul</th>
+                    <th class="fw-bold">Foto</th>
                     <th class="fw-bold">Penulis</th>
                     <th class="fw-bold">Genre</th>
                     <th class="fw-bold">Review Buku</th>
-                </tr>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +34,14 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td class="fw-bold">{{ $book->title }}</td>
+                        <td>
+                            @if ($book->cover_image)
+                                <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover Buku" width="80" height="120"
+                                    style="object-fit: cover;">
+                            @else
+                                <span class="text-muted">Tidak ada foto</span>
+                            @endif
+                        </td>
                         <td>{{ $book->author }}</td>
                         <td>
                             @if ($book->genres->isEmpty())
@@ -49,7 +56,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center text-muted">Tidak ada data buku ditemukan.</td>
+                        <td colspan="6" class="text-center text-muted">Tidak ada data buku ditemukan.</td>
                     </tr>
                 @endforelse
             </tbody>

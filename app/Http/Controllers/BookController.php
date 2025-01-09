@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -30,22 +31,64 @@ class BookController extends Controller
             'title' => 'required|string|max:100',
             'author' => 'required|string',
             'status' => 'required|in:sudah dibaca,sedang dibaca,ingin dibaca',
-            'genres' => 'required|array', // Genres harus berupa array
-            'genres.*' => 'exists:genres,genre_id', // Pastikan setiap genre_id valid
+            'genres' => 'required|array',
+            'genres.*' => 'exists:genres,genre_id',
             'review' => 'nullable|string',
             'rating' => 'nullable|integer|min:1|max:5',
             'date_added' => 'required|date',
             'date_finished' => 'nullable|date',
+            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Validasi foto
         ]);
-        $book = new Book(); // Membuat objek buku
-        $book->fill($requestData); // Mengisi data buku kecuali genre
-        $book->save(); // Menyimpan data buku ke database
 
-        // Hubungkan buku dengan genre di tabel pivot
+        // Upload foto jika ada
+        if ($request->hasFile('cover_image')) {
+            $path = $request->file('cover_image')->store('covers', 'public'); // Simpan di storage/covers
+            $requestData['cover_image'] = $path;
+        }
+
+        $book = new Book();
+        $book->fill($requestData);
+        $book->save();
+
+        // Hubungkan buku dengan genre
         $book->genres()->attach($requestData['genres']);
-        flash('Data buku Berhasil di Tambahkan')->success();
+        flash('Data buku berhasil ditambahkan')->success();
         return redirect()->route('books.index');
     }
+
+    public function update(Request $request, string $id)
+    {
+        $requestData = $request->validate([
+            'title' => 'required|string|max:100',
+            'author' => 'required|string',
+            'review' => 'nullable|string',
+            'genres' => 'nullable|array',
+            'genres.*' => 'exists:genres,genre_id',
+            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Validasi foto
+        ]);
+
+        $book = Book::findOrFail($id);
+
+        // Upload foto baru jika ada
+        if ($request->hasFile('cover_image')) {
+            // Hapus foto lama jika ada
+            if ($book->cover_image && Storage::disk('public')->exists($book->cover_image)) {
+                Storage::disk('public')->delete($book->cover_image);
+            }
+
+            // Simpan foto baru
+            $path = $request->file('cover_image')->store('covers', 'public');
+            $requestData['cover_image'] = $path;
+        }
+
+        $book->fill($requestData);
+        $book->save();
+
+        $book->genres()->sync($requestData['genres'] ?? []);
+        flash('Data berhasil diperbarui')->success();
+        return redirect()->route('books.index');
+    }
+
 
 
     public function edit(string $id)
@@ -55,32 +98,6 @@ class BookController extends Controller
         return view('books.edit', $data);
     }
 
-    public function update(Request $request, string $id)
-    {
-        $requestData = $request->validate([
-            'title' => 'required|string|max:100',
-            'author' => 'required|string',
-            'review' => 'nullable|string',
-            'genres' => 'nullable|array', // Genres bisa kosong
-            'genres.*' => 'exists:genres,genre_id', // Validasi setiap genre
-        ]);
-
-        // Cari buku berdasarkan ID
-        $book = Book::findOrFail($id);
-
-        // Update hanya field yang diubah
-        $book->title = $requestData['title'];
-        $book->author = $requestData['author'];
-        $book->review = $requestData['review'];
-        $book->user_id = $book->user_id; // Pastikan user_id tidak berubah
-        $book->save();
-
-        // Update genre melalui relasi pivot
-        $book->genres()->sync($requestData['genres'] ?? []); // Jika genre kosong, relasi juga kosong
-
-        flash('Data berhasil diperbarui')->success();
-        return redirect()->route('books.index');
-    }
 
     public function updateStatus(Request $request, Book $book)
     {

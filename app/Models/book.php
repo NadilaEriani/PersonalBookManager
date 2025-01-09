@@ -22,6 +22,7 @@ class Book extends Model
         'rating',
         'date_added',
         'date_finished',
+        'cover_image',
     ];
     public function genres()
     {
