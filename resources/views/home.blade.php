@@ -110,7 +110,7 @@
                         <a href="{{ route('books.filterByGenre', 'Motivasi') }}">
                             <img src="/book/images/category3.jpg" class="img-fluid rounded-3" alt="Motivation">
                             <h6 class="position-absolute bottom-0 bg-primary m-4 py-2 px-3 rounded-3 text-white">
-                                Motivation</h6>
+                                Motivation </h6>
                         </a>
                     </div>
                 </div>

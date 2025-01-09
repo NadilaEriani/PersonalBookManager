@@ -13,7 +13,7 @@
             <input type="text" name="title" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="cover_image">Foto Buku</label>
+            <label for="cover_image">Cover Buku</label>
             <input type="file" name="cover_image" class="form-control" accept="image/*">
             <small class="text-muted">Unggah foto buku (format: jpg, jpeg, png, max: 2MB).</small>
         </div>

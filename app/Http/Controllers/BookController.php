@@ -56,6 +56,7 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
+    
     public function update(Request $request, string $id)
     {
         $requestData = $request->validate([
